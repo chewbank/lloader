@@ -1,6 +1,6 @@
 # lloader
 
-node.js模块分级、批量装载器。通过预声明模块的载入等级，实现模块间装载顺序的动态配置。
+node.js模块分级、批量装载器。通过预声明模块的载入等级，实现模块间装载顺序的动态管理。
 
 ### install
 
@@ -48,7 +48,7 @@ lloader.lode()
 ### 示例
 
 ```js
-const batchImport = require('lloader')
+const lloader = require('lloader')
 
 const app = {}
 

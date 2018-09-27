@@ -1,0 +1,29 @@
+{
+  "name": "lloader",
+  "version": "0.1.0",
+  "description": "node.js模块声明式分级、批量装载器",
+  "main": "index.js",
+  "dependencies": {
+    "batch-import": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "jtf"
+  },
+  "files": [
+    "index.js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiangle/lloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xiangle/lloader/issues"
+  },
+  "homepage": "https://github.com/xiangle/lloader#readme"
+}
