@@ -3,7 +3,7 @@
 const lloader = require('..')
 const app = {}
 
-lloader(app).add({
+const container = lloader(app).now({
    "other": {
       "level": 6,
       "path": "app/other",
@@ -13,10 +13,7 @@ lloader(app).add({
       "level": 3,
       "path": "app/controllers",
       "exclude": ['...load.js']
-   }
-})
-
-lloader(app).add({
+   },
    "models": {
       "level": 1,
       "path": "app/models",
@@ -24,6 +21,4 @@ lloader(app).add({
    }
 })
 
-lloader.load()
-
-console.log(app)
+console.log(container)

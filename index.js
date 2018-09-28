@@ -7,9 +7,22 @@ class Container {
    constructor(container) {
       this.container = container
    }
+   /**
+    * 添加分级加载项
+    * @param {Object} options 加载配置项
+    */
    add(options) {
       this.options = options
       loads.push(this)
+      return this
+   }
+   /**
+    * 即时运行，不使用分级加载
+    * @param {Object} options 加载配置项
+    * @returns 加载器导出结果
+    */
+   now(options) {
+      return batchImport(options, this.container)
    }
 }
 
@@ -40,7 +53,6 @@ lloader.load = function () {
       for (const name in options) {
          const item = options[name]
          list.push({
-            name,
             container,
             level: item.level || 0,
             options: { [name]: item }
@@ -52,9 +64,8 @@ lloader.load = function () {
       return a.level - b.level
    })
 
-   for (let { options, container, name } of list) {
-      container[name] = {}
-      batchImport(options, container[name])
+   for (let { options, container } of list) {
+      batchImport(options, container)
    }
 
 }
