@@ -14,7 +14,11 @@ const lloader = require('lloader')
 const container = {}
 
 lloader(container).add({
-   "path": "models/",
+   "models": {
+      "level": 1,
+      "path": "app/models",
+      "exclude": ['load.js']
+   }
 })
 
 lloader.lode()
