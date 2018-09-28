@@ -28,7 +28,7 @@ lloader.lode()
 
 *  `container` *Object* 将模块导出结果保存到指定容器中
 
-*  `options` *Object* 装载选项
+*  `$options` *Object* 自定义装载选项名称
 
       *  `level` *Number* - 加载等级
 
@@ -47,6 +47,17 @@ lloader.lode()
       *  `complete(data)` *Function* - 同一个配置项下的所有模块导出完成后的数据处理函数，this指向根容器。用于数据检验、预处理等操作（可选）
 
             *  `data` *Object* - 所有子集模块导出数据集合
+
+预添加分级装载配置项，最终由lode()激活执行。
+
+### lloader(container).lode()
+
+执行由add()方法添加的分级装载项
+
+
+### lloader(container).now(options)
+
+即时执行装载器，其实是[batch-import](https://github.com/xiangle/batch-import)模块的包装器，除了不支持level选项外，其它参数与add()方法一致。
 
 
 ### 示例
