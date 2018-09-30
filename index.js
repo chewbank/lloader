@@ -13,7 +13,11 @@ function lloader(dirPath, container) {
 
    if (!dirPath || !container) return
 
-   return new chain(dirPath, container)
+   const directory = new chain(dirPath, container)
+
+   common.directorys.push(directory)
+
+   return directory
 
 }
 

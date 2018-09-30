@@ -4,11 +4,11 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
-test('now', t => {
+test('run', t => {
 
    const app = {}
 
-   lloader('app', app).now({
+   lloader('app', app).run({
       "other": {
          "level": 6
       },

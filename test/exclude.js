@@ -2,85 +2,28 @@
 
 const test = require('jtf')
 const typea = require('typea')
-const batchImport = require('..')
+const lloader = require('..')
 
-test('file', t => {
+test('exclude', t => {
 
-   const container = batchImport({
-      "controllers": {
-         "path": "app/controllers",
-         "exclude": ['a.js']
-      }
-   })
+   const app = {}
 
-   t.ok(!container.extend)
-   t.ok(!container.models)
-   t.ok(!container.controllers['a.js'])
-
-   const { data, error } = typea.strict(container, {
-      controllers: {
-         index: Function,
-         sub: {
-            sc: Function
-         }
-      }
-   })
-
-   t.ok(data, error)
-
-})
-
-test('directory', t => {
-
-   const container = batchImport({
-      "models": {
-         "path": "app/models",
-         "exclude": ['sub']
-      }
-   })
-
-   t.ok(!container.controllers)
-   t.ok(!container.extend)
-   t.ok(!container.models['sub'])
-
-   const { data, error } = typea.strict(container, {
-      models: {
-         index: Function,
-         md: Function,
-         sb: { mj: Function }
-      }
-   })
-
-   t.ok(data, error)
-
-})
-
-test('directory + file', t => {
-
-   const container = batchImport({
-      "controllers": {
-         "path": "app/controllers",
-         "exclude": ['a.js']
+   lloader('app', app).set({
+      'other': {
+         'level': 6,
+         "exclude": ['of.js', 'oo']
       },
-      "models": {
-         "path": "app/models",
-         "exclude": ['sub']
-      }
    })
 
-   t.ok(!container.extend)
+   lloader.load()
+   
+   t.ok(!app.other.of)
+   t.ok(!app.other.oo)
 
-   const { data, error } = typea.strict(container, {
-      controllers: {
+   const { data, error } = typea.strict(app, {
+      other: {
          index: Function,
-         sub: {
-            sc: Function
-         }
-      },
-      models: {
-         index: Function,
-         md: Function,
-         sb: { mj: Function }
+         // oo: Object
       }
    })
 

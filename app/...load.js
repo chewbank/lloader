@@ -16,15 +16,6 @@ module.exports = {
       //    console.log('controllers complete models')
       // }
    },
-   'typea': {
-      level: 5
-   },
-   'other': {
-      level: 6,
-      complete(data) {
-
-      }
-   },
    'bb.js': {
       level: 3,
       // import(name) {

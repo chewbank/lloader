@@ -1,14 +1,14 @@
 ## lloader
 
-node.js模块分级、批量装载器。通过预声明模块的载入等级，实现模块间装载顺序的动态管理。
+node.js模块分级、批量装载器。通过预声明模块间的载入等级，动态管理模块间装载顺序。
 
 ### 特性
 
-* 支持目录、模块分级加载，每个目录使用独立的分级规则
+* 支持目录、模块分级加载，每个目录拥有独立的分级规则
 
-* 支持使用api和配置文件两种方式定义加载项
+* 每个目录均支持可选的装载配置文件，实现模块的多层级、精细化管理
 
-* 每个目录均支持可选的配置文件，实现多层级、精细化管理
+* 支持api和配置文件两种方式定义加载项
 
 * 支持配置项深度继承和覆盖
 
@@ -33,11 +33,15 @@ lloader('app', container).set({
 lloader.lode()
 ```
 
-### lloader(path ,container).set(options)
+### lloader(path ,container)
 
 *  `path` *String* 批量加载模块所在目录的相对路径
 
 *  `container` *Object* 将模块导出结果保存到指定容器中
+
+添加目录装载项，返回当前目录配置实例
+
+### this.set(options)
 
 *  `options` *Object* 
 
@@ -59,7 +63,8 @@ lloader.lode()
 
                *  `data` *Object* - 所有子集模块导出数据集合
 
-预添加分级装载配置项，通过lode()方法激活并执行。如果你需要即时执行装载器，请使用now()方法。
+
+为当前目录实例下的一级子节点声明装载配置项。
 
 
 ### ...load.js 配置文件
@@ -76,9 +81,6 @@ module.exports = {
    'models': {
       level: 8
    },
-   'other': {
-      level: 6
-   },
    'bb.js': {
       level: 3
    }
@@ -86,9 +88,35 @@ module.exports = {
 ```
 
 
+### this.lode(options)
+
+装载当前配置实例，options参数是可选的，数据结构与set(options)一致
+
+#### 示例
+
+```js
+const lloader = require('lloader')
+
+const app = {}
+lloader('app', app).run({
+   "other": {
+      "level": 3
+   },
+   "controllers": {
+      "level": 3
+   },
+   "models": {
+      "level": 1
+   }
+})
+
+console.log(app)
+```
+
+
 ### lloader.lode()
 
-批量执行由set()方法添加的分级装载配置项
+按照分级规则批量装载所有的配置实例
 
 #### 示例
 
@@ -119,30 +147,4 @@ lloader('component/user/app', user).set({
 })
 
 lloader.lode()
-```
-
-
-### lloader(path ,container).now(options)
-
-即时执行装载器，参数与set(options)一致。
-
-#### 示例
-
-```js
-const lloader = require('lloader')
-
-const app = {}
-lloader('app', app).now({
-   "other": {
-      "exclude": ['a.js']
-   },
-   "controllers": {
-      "exclude": ['b.js']
-   },
-   "models": {
-      "exclude": ['c.js']
-   }
-})
-
-console.log(app)
 ```
