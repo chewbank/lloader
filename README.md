@@ -114,13 +114,7 @@ lloader('app', app).set({
 const user = {}
 lloader('component/user/app', user).set({
    "middleware": {
-      "level": 5,
-      complete(data) {
-         for (let name in data) {
-            this[name] = data[name]
-         }
-         return data
-      }
+      "level": 5
    }
 })
 
@@ -130,7 +124,7 @@ lloader.lode()
 
 ### lloader(path ,container).now(options)
 
-即时执行装载器，参数与set()方法一致。
+即时执行装载器，参数与set(options)一致。
 
 #### 示例
 
