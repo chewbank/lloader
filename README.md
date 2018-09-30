@@ -98,7 +98,7 @@ module.exports = {
 const lloader = require('lloader')
 
 const app = {}
-lloader('app', app).run({
+lloader('app', app).lode({
    "other": {
       "level": 3
    },
