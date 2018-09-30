@@ -1,24 +1,42 @@
 "use strict"
 
+const test = require('jtf')
+const typea = require('typea')
 const lloader = require('..')
-const app = {}
 
-const container = lloader(app).now({
-   "other": {
-      "level": 6,
-      "path": "app/other",
-      "exclude": ['...load.js']
-   },
-   "controllers": {
-      "level": 3,
-      "path": "app/controllers",
-      "exclude": ['...load.js']
-   },
-   "models": {
-      "level": 1,
-      "path": "app/models",
-      "exclude": ['...load.js']
-   }
+test('now', t => {
+
+   const app = {}
+
+   lloader('app', app).now({
+      "other": {
+         "level": 6
+      },
+      "controllers": {
+         "level": 3
+      },
+      "models": {
+         "level": 1
+      }
+   })
+
+   const { data, error } = typea.strict(app, {
+      config: { db: Function },
+      controllers: {
+         a: Function,
+         c1: { a: Function },
+         index: Function
+      },
+      models: { index: Function },
+      helper: {
+         db: { xx: 666 },
+         sub: {
+            s1: Function,
+            s2: Function
+         }
+      }
+   })
+
+   t.ok(data, error)
+
 })
-
-console.log(container)

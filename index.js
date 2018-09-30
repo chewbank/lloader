@@ -1,72 +1,37 @@
 'use strict';
 
-const loads = []
-const batchImport = require('batch-import')
-
-class Container {
-   constructor(container) {
-      this.container = container
-   }
-   /**
-    * 添加分级加载项
-    * @param {Object} options 加载配置项
-    */
-   add(options) {
-      this.options = options
-      loads.push(this)
-      return this
-   }
-   /**
-    * 即时运行，不使用分级加载
-    * @param {Object} options 加载配置项
-    * @returns 加载器导出结果
-    */
-   now(options) {
-      return batchImport(options, this.container)
-   }
-}
-
+const loader = require('./lib/loader')
+const chain = require('./lib/chain')
+const common = require('./lib/common')
 
 /**
  * 
+ * @param {String} dirPath 加载目录的相对路径
  * @param {Object} container 模块挂载容器
  */
-function lloader(container) {
+function lloader(dirPath, container) {
 
-   if (!container instanceof Object) return
+   if (!dirPath || !container) return
 
-   const chain = new Container(container);
-
-   return chain
+   return new chain(dirPath, container)
 
 }
 
+
 /**
- * 执行装载器
+ * 批量执行装载器队列
  */
 lloader.load = function () {
 
    const list = []
 
-   for (const item of loads) {
-      const { container, options } = item
-      for (const name in options) {
-         const item = options[name]
-         list.push({
-            container,
-            level: item.level || 0,
-            options: { [name]: item }
-         })
-      }
+   for (const directory of common.directorys) {
+      loader.level(list, directory)
    }
 
-   list.sort(function (a, b) {
-      return a.level - b.level
-   })
+   loader.loader(list)
 
-   for (let { options, container } of list) {
-      batchImport(options, container)
-   }
+   common.directorys = []
 
 }
 

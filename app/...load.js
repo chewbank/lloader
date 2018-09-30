@@ -1,34 +1,35 @@
 'use strict';
 
 module.exports = {
-   config: {
+   'config': {
       level: 1
    },
-   model: {
-      level: 2
+   'models': {
+      level: 8
    },
-   middleware: {
-      level: 3
-   },
-   controller: {
+   'controllers': {
       level: 4,
-      import(data) {
-
-      }
+      // import(name) {
+      //    console.log(`controllers import ${name}`)
+      // },
+      // complete(data) {
+      //    console.log('controllers complete models')
+      // }
    },
-   typea: {
-      level: 5,
-      import(data) {
-
-      }
+   'typea': {
+      level: 5
    },
-   other: {
+   'other': {
       level: 6,
-      import(data) {
-
-      },
       complete(data) {
 
       }
-   }
+   },
+   'bb.js': {
+      level: 3,
+      // import(name) {
+      //    console.log(name)
+      // }
+   },
+   'fl.js': false
 }

@@ -1,6 +1,17 @@
-# lloader
+## lloader
 
 node.js模块分级、批量装载器。通过预声明模块的载入等级，实现模块间装载顺序的动态管理。
+
+### 特性
+
+* 支持目录、模块分级加载，每个目录使用独立的分级规则
+
+* 支持使用api和配置文件两种方式定义加载项
+
+* 每个目录均支持可选的配置文件，实现多层级、精细化管理
+
+* 支持配置项深度继承和覆盖
+
 
 ### install
 
@@ -13,18 +24,18 @@ const lloader = require('lloader')
 
 const container = {}
 
-lloader(container).add({
+lloader('app', container).set({
    "models": {
-      "level": 1,
-      "path": "app/models",
-      "exclude": ['load.js']
+      "level": 1
    }
 })
 
 lloader.lode()
 ```
 
-### lloader(container).add(options)
+### lloader(path ,container).set(options)
+
+*  `path` *String* 批量加载模块所在目录的相对路径
 
 *  `container` *Object* 将模块导出结果保存到指定容器中
 
@@ -33,8 +44,6 @@ lloader.lode()
       *  `$name` *Object* - 装载选项名称
 
          *  `level` *Number* - 加载等级
-
-         *  `path` *String* - 指定模块加载递归目录（必填）
 
          *  `contain` *Array* - 仅加载指定模块或目录，不能与exclude同时使用（可选）
 
@@ -46,15 +55,40 @@ lloader.lode()
 
                *  `data` * - 模块导出数据
 
-         *  `complete(data)` *Function* - 同一个配置项下的所有模块导出完成后的数据处理函数，this指向根容器。用于数据检验、预处理等操作（可选）
+         *  `complete(data)` *Function* - 同一个配置项下的所有模块导出完成后的数据处理函数。用于数据检验、预处理等操作（可选）
 
                *  `data` *Object* - 所有子集模块导出数据集合
 
-预添加分级装载配置项，最终由lode()激活并执行。如果你需要即时执行装载器，请使用now()方法。
+预添加分级装载配置项，通过lode()方法激活并执行。如果你需要即时执行装载器，请使用now()方法。
 
-### lloader(container).lode()
 
-执行由add()方法添加的分级装载项
+### ...load.js 配置文件
+
+每个目录均支持可选的加载配置文件，导出数据结构与set(options)一致，但优先级高于set(options)。
+
+#### 示例
+
+```js
+module.exports = {
+   'config': {
+      level: 1
+   },
+   'models': {
+      level: 8
+   },
+   'other': {
+      level: 6
+   },
+   'bb.js': {
+      level: 3
+   }
+}
+```
+
+
+### lloader.lode()
+
+批量执行由set()方法添加的分级装载配置项
 
 #### 示例
 
@@ -62,30 +96,25 @@ lloader.lode()
 const lloader = require('lloader')
 
 const app = {}
-
-lloader(app).add({
+lloader('app', app).set({
    "models": {
       "level": 2,
-      "path": "models/",
       import(filename, data) {
          if (data instanceof Function) {
             return data(this)
-         } else {
-            throw new Error(`${filename}模块导出必须为函数类型`)
          }
       },
    },
    "controllers": {
       "level": 3,
-      "path": "controllers/",
       "contain": ["_route.js"],
    },
 })
 
-lloader(app).add({
+const user = {}
+lloader('component/user/app', user).set({
    "middleware": {
       "level": 5,
-      "path": "middleware/",
       complete(data) {
          for (let name in data) {
             this[name] = data[name]
@@ -98,33 +127,28 @@ lloader(app).add({
 lloader.lode()
 ```
 
-### lloader(container).now(options)
 
-即时执行装载器，除了不支持level选项外，其它参数与add()方法基本一致。now()方法只是[batch-import](https://github.com/xiangle/batch-import)模块的接口包装器。
+### lloader(path ,container).now(options)
+
+即时执行装载器，参数与set()方法一致。
 
 #### 示例
 
 ```js
 const lloader = require('lloader')
-const app = {}
 
-const container = lloader(app).now({
+const app = {}
+lloader('app', app).now({
    "other": {
-      "level": 6,
-      "path": "app/other",
-      "exclude": ['...load.js']
+      "exclude": ['a.js']
    },
    "controllers": {
-      "level": 3,
-      "path": "app/controllers",
-      "exclude": ['...load.js']
+      "exclude": ['b.js']
    },
    "models": {
-      "level": 1,
-      "path": "app/models",
-      "exclude": ['...load.js']
+      "exclude": ['c.js']
    }
 })
 
-console.log(container)
+console.log(app)
 ```

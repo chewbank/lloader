@@ -16,12 +16,6 @@ module.exports = {
 
       }
    },
-   typea: {
-      level: 5,
-      import(data) {
-
-      }
-   },
    other: {
       level: 6,
       import(data) {

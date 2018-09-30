@@ -1,17 +1,18 @@
 {
   "name": "lloader",
-  "version": "0.1.1",
+  "version": "1.0.1",
   "description": "node.js模块声明式分级、批量装载器",
   "main": "index.js",
-  "dependencies": {
-    "batch-import": "^3.2.0"
+  "dependencies": {},
+  "devDependencies": {
+    "typea": "^4.2.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "dev": "jtf"
+    "test": "jtf"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "author": "",
   "license": "ISC",
