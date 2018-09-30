@@ -3,8 +3,8 @@
 module.exports = {
    sub: {
       level: 2,
-      // import(name) {
-      //    console.log(`controllers import ${name}`)
+      // import(data) {
+      //    console.log(`controllers import ${data}`)
       // },
       // complete(data) {
       //    console.log('controllers complete models')
@@ -12,7 +12,7 @@ module.exports = {
    },
    'db.js': {
       level: 1,
-      import(name, func) {
+      import(func) {
          return func()
       }
    }

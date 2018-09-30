@@ -9,8 +9,8 @@ module.exports = {
    },
    'controllers': {
       level: 4,
-      // import(name) {
-      //    console.log(`controllers import ${name}`)
+      // import(data) {
+      //    console.log(`controllers import ${data}`)
       // },
       // complete(data) {
       //    console.log('controllers complete models')
@@ -18,8 +18,8 @@ module.exports = {
    },
    'bb.js': {
       level: 3,
-      // import(name) {
-      //    console.log(name)
+      // import(data) {
+      //    console.log(data)
       // }
    },
    'fl.js': false

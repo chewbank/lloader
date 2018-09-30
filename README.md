@@ -53,16 +53,17 @@ lloader.lode()
 
          *  `exclude` *Array* - 排除指定模块或目录，不能与contain同时使用（可选）
 
-         *  `import(filename, data)` *Function* - 模块导出数据处理函数，this指向当前层级容器。用于数据检验、预处理等操作（可选）
+         *  `import(data, name)` *Function* - 模块导出数据处理函数，this指向当前层级容器。如果无数据返回，则该模块输出为空（可选）
 
-               *  `filename` *String* - 当前文件名称，不含后缀
+               *  `data` * - 当前模块导出数据
 
-               *  `data` * - 模块导出数据
+               *  `name` *String* - 当前模块名称，不含后缀
 
-         *  `complete(data)` *Function* - 同一个配置项下的所有模块导出完成后的数据处理函数。用于数据检验、预处理等操作（可选）
+         *  `complete(data, name)` *Function* - 同一个目录下的所有子集导出完毕后的数据处理函数。如果无数据返回，则该目录输出为空（可选）
 
-               *  `data` *Object* - 所有子集模块导出数据集合
+               *  `data` *Object* - 当前目录下所有子集导出数据集合
 
+               *  `name` *String* - 当前目录名称
 
 为当前目录实例下的一级子节点声明装载配置项。
 
@@ -140,7 +141,7 @@ lloader('app', app).set({
 })
 
 const user = {}
-lloader('component/user/app', user).set({
+lloader('components/user/app', user).set({
    "middleware": {
       "level": 5
    }

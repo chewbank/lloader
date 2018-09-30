@@ -44,11 +44,11 @@ test('app', t => {
 })
 
 
-test('component', t => {
+test('components', t => {
 
    const app = {}
 
-   lloader('component/user/app', app).set({
+   lloader('components/user/app', app).set({
       "other": {
          "level": 5
       },
@@ -105,7 +105,7 @@ test('mixin', t => {
 
    const user = {}
 
-   lloader('component/user/app', user).set({
+   lloader('components/user/app', user).set({
       "other": {
          "level": 5
       },

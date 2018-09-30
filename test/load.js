@@ -8,7 +8,7 @@ test('run', t => {
 
    const app = {}
 
-   lloader('app', app).run({
+   lloader('app', app).load({
       "other": {
          "level": 6
       },
