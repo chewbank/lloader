@@ -68,7 +68,7 @@ lloader.lode()
 为当前目录实例下的一级子节点声明装载配置项。
 
 
-### ...load.js 配置文件
+### ...loader.js 配置文件
 
 每个目录均支持可选的加载配置文件，导出数据结构与set(options)一致，但优先级高于set(options)。
 

@@ -4,6 +4,7 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
+
 test('app', t => {
 
    const app = {}
@@ -83,7 +84,6 @@ test('components', t => {
    t.ok(data, error)
 
 })
-
 
 
 test('mixin', t => {
