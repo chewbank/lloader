@@ -20,3 +20,7 @@
 * 新增before、after钩子
 
 * 将import更名为module，complete更名为directory
+
+### 1.0.7
+
+* 修改before、after钩子参数为data ,container

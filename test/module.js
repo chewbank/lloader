@@ -11,19 +11,20 @@ test('module', t => {
    lloader('app', app).set({
       "other": {
          "level": 6,
-         before(){
-            // console.log('before')
+         before(data, container) {
+            // console.log('before', data, container)
          },
-         module(data){
+         module(data) {
             // console.log('module')
             return data
          },
-         directory(data, name){
+         directory(data, name) {
             // console.log('directory', name)
             return data
          },
-         after(){
-            // console.log('after')
+         after(data, container) {
+            // console.log('after data', data)
+            // console.log('after container', container)
          },
       },
       "controllers": {
@@ -46,7 +47,7 @@ test('module', t => {
       models: { index: Function },
       other: {
          oo: Object,
-         index:Object
+         index: Object
       }
    })
 
