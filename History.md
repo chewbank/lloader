@@ -24,3 +24,7 @@
 ### 1.0.7
 
 * 修改before、after钩子参数为data ,container
+
+### 1.0.8
+
+* 忽略除.js和.json后缀以外的所有文件类型
