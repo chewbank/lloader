@@ -3,7 +3,7 @@
 module.exports = {
    'dds.js': {
       level: 4,
-      import(func) {
+      module(func) {
          return func(588)
       }
    }

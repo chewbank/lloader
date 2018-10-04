@@ -9,6 +9,12 @@ test('module', t => {
    const app = {}
 
    lloader('app', app).set({
+      "model": {
+         "level": 1
+      },
+      "controller": {
+         "level": 3
+      },
       "other": {
          "level": 6,
          before(data, container) {
@@ -27,24 +33,18 @@ test('module', t => {
             // console.log('after container', container)
          },
       },
-      "controllers": {
-         "level": 3
-      },
-      "models": {
-         "level": 1
-      }
    })
 
    lloader.load()
 
    const { data, error } = typea.strict(app, {
       config: { db: Function },
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
       },
-      models: { index: Function },
+      model: { index: Function },
       other: {
          oo: Object,
          index: Object

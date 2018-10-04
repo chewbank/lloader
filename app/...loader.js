@@ -4,21 +4,21 @@ module.exports = {
    'config': {
       level: 1
    },
-   'models': {
+   'model': {
       level: 8
    },
-   'controllers': {
+   'controller': {
       level: 4,
-      // import(data) {
-      //    console.log(`controllers import ${data}`)
+      // module(data) {
+      //    console.log(`controller module ${data}`)
       // },
-      // complete(data) {
-      //    console.log('controllers complete models')
-      // }
+      // directory(data) {
+      //    console.log('controller directory model')
+      // },
    },
    'bb.js': {
       level: 3,
-      // import(data) {
+      // module(data) {
       //    console.log(data)
       // }
    },

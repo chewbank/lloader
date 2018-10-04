@@ -25,7 +25,7 @@ const lloader = require('lloader')
 const container = {}
 
 lloader('app', container).set({
-   "models": {
+   "model": {
       "level": 1
    }
 })
@@ -91,7 +91,7 @@ module.exports = {
    'config': {
       level: 1
    },
-   'models': {
+   'model': {
       level: 8
    },
    'bb.js': {
@@ -115,10 +115,10 @@ lloader('app', app).lode({
    "other": {
       "level": 3
    },
-   "controllers": {
+   "controller": {
       "level": 3
    },
-   "models": {
+   "model": {
       "level": 1
    }
 })
@@ -138,7 +138,7 @@ const lloader = require('lloader')
 
 const app = {}
 lloader('app', app).set({
-   "models": {
+   "model": {
       "level": 2,
       module(filename, data) {
          if (data instanceof Function) {
@@ -146,7 +146,7 @@ lloader('app', app).set({
          }
       },
    },
-   "controllers": {
+   "controller": {
       "level": 3,
       "contain": ["_route.js"],
    },

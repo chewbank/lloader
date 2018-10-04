@@ -12,16 +12,16 @@ module.exports = {
    },
    controller: {
       level: 4,
-      import(data) {
+      module(data) {
          return data
       }
    },
    other: {
       level: 6,
-      import(data) {
+      module(data) {
          return data
       },
-      complete(data) {
+      directory(data) {
          return data
       }
    }

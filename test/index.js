@@ -13,10 +13,10 @@ test('app', t => {
       "helper": {
          "level": 0
       },
-      "controllers": {
+      "controller": {
          "level": 3
       },
-      "models": {
+      "model": {
          "level": 2
       }
    })
@@ -32,12 +32,12 @@ test('app', t => {
          }
       },
       config: { db: Function },
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
       },
-      models: { index: Function }
+      model: { index: Function }
    })
 
    t.ok(data, error)
@@ -53,13 +53,13 @@ test('components', t => {
       "other": {
          "level": 5
       },
-      "controllers": {
+      "controller": {
          "level": 3,
-         module(name) {
-            console.log(`import ${name}`)
+         module(data) {
+            console.log(`module`)
          },
          directory(data) {
-            console.log('complete models')
+            console.log('directory')
          }
       }
    })
@@ -67,7 +67,7 @@ test('components', t => {
    lloader.load()
 
    const { data, error } = typea.strict(app, {
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
@@ -76,7 +76,7 @@ test('components', t => {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      models: {
+      model: {
          index: Function
       }
    })
@@ -94,10 +94,10 @@ test('mixin', t => {
       "helper": {
          "level": 0
       },
-      "controllers": {
+      "controller": {
          "level": 3
       },
-      "models": {
+      "model": {
          "level": 2
       }
    })
@@ -109,13 +109,13 @@ test('mixin', t => {
       "other": {
          "level": 5
       },
-      "controllers": {
+      "controller": {
          "level": 3,
-         import(name) {
-            console.log(`import ${name}`)
+         module(name) {
+            console.log(`module ${name}`)
          },
-         complete(data) {
-            console.log('complete models')
+         directory(data) {
+            console.log('directory model')
          }
       }
    })
@@ -131,19 +131,19 @@ test('mixin', t => {
          }
       },
       config: { db: Function },
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
       },
-      models: { index: Function }
+      model: { index: Function }
    })
 
    t.ok(data, error)
 
 
    const userReslut = typea.strict(user, {
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
@@ -152,7 +152,7 @@ test('mixin', t => {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      models: {
+      model: {
          index: Function
       }
    })

@@ -15,22 +15,22 @@ test('directory', t => {
             return data
          }
       },
-      "controllers": {
+      "controller": {
          "level": 3
       },
-      "models": {
+      "model": {
          "level": 1
       }
    })
 
    const { data, error } = typea.strict(app, {
       config: { db: Function },
-      controllers: {
+      controller: {
          a: Function,
          c1: { a: Function },
          index: Function
       },
-      models: { index: Function },
+      model: { index: Function },
       helper: {
          db: Function,
          sub: {
