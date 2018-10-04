@@ -53,17 +53,29 @@ lloader.lode()
 
          *  `exclude` *Array* - 排除指定模块或目录，不能与contain同时使用（可选）
 
-         *  `import(data, name)` *Function* - 模块导出数据处理函数，this指向当前层级容器。如果无数据返回，则该模块输出为空（可选）
+         *  `before(container, name)` *Function* - 目录、模块加载前置钩子函数（仅在当前层级触发，不对子集继承）
+
+               *  `container` * - 当前模块导出数据
+
+               *  `name` *String* - 当前目录、模块名称
+
+         *  `module(data, name)` *Function* - 模块导出数据处理函数，this指向当前层级容器。如果无数据返回，则该模块输出为空（支持子集继承）
 
                *  `data` * - 当前模块导出数据
 
                *  `name` *String* - 当前模块名称，不含后缀
 
-         *  `complete(data, name)` *Function* - 同一个目录下的所有子集导出完毕后的数据处理函数。如果无数据返回，则该目录输出为空（可选）
+         *  `directory(data, name)` *Function* - 同一个配置目录下的所有子集导出完毕后的数据处理函数。如果无数据返回，则该目录结构体不会被创建（支持子集继承）
 
                *  `data` *Object* - 当前目录下所有子集导出数据集合
 
                *  `name` *String* - 当前目录名称
+
+         *  `after(container, name)` *Function* - 目录、模块加载后置钩子函数（仅在当前层级触发，不对子集继承）
+
+               *  `container` * - 当前模块导出数据
+
+               *  `name` *String* - 当前目录、模块名称
 
 为当前目录实例下的一级子节点声明装载配置项。
 

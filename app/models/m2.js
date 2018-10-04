@@ -1,3 +1,1 @@
-module.exports = app => {
-   return 888
-}
+module.exports = {}

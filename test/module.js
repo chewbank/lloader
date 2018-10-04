@@ -4,13 +4,27 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
-test('run', t => {
+test('module', t => {
 
    const app = {}
 
-   lloader('app', app).load({
+   lloader('app', app).set({
       "other": {
-         "level": 6
+         "level": 6,
+         before(){
+            // console.log('before')
+         },
+         module(data){
+            // console.log('module')
+            return data
+         },
+         directory(data, name){
+            // console.log('directory', name)
+            return data
+         },
+         after(){
+            // console.log('after')
+         },
       },
       "controllers": {
          "level": 3
@@ -20,6 +34,8 @@ test('run', t => {
       }
    })
 
+   lloader.load()
+
    const { data, error } = typea.strict(app, {
       config: { db: Function },
       controllers: {
@@ -28,12 +44,9 @@ test('run', t => {
          index: Function
       },
       models: { index: Function },
-      helper: {
-         db: Function,
-         sub: {
-            s1: Function,
-            s2: Function
-         }
+      other: {
+         oo: Object,
+         index:Object
       }
    })
 

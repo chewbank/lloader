@@ -25,7 +25,7 @@ test('app', t => {
 
    const { data, error } = typea.strict(app, {
       helper: {
-         db: { xx: 666 },
+         db: Function,
          sub: {
             s1: Function,
             s2: Function
@@ -55,10 +55,10 @@ test('components', t => {
       },
       "controllers": {
          "level": 3,
-         import(name) {
+         module(name) {
             console.log(`import ${name}`)
          },
-         complete(data) {
+         directory(data) {
             console.log('complete models')
          }
       }
@@ -69,16 +69,16 @@ test('components', t => {
    const { data, error } = typea.strict(app, {
       controllers: {
          a: Function,
-         c1: { dds: 588 },
+         c1: { a: Function },
          index: Function
       },
       other: {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      models: { 
+      models: {
          index: Function
-       }
+      }
    })
 
    t.ok(data, error)
@@ -124,7 +124,7 @@ test('mixin', t => {
 
    const { data, error } = typea.strict(app, {
       helper: {
-         db: { xx: 666 },
+         db: Function,
          sub: {
             s1: Function,
             s2: Function
@@ -145,16 +145,16 @@ test('mixin', t => {
    const userReslut = typea.strict(user, {
       controllers: {
          a: Function,
-         c1: { dds: 588 },
+         c1: { a: Function },
          index: Function
       },
       other: {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      models: { 
+      models: {
          index: Function
-       }
+      }
    })
 
    t.ok(userReslut.data, userReslut.error)

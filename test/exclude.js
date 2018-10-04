@@ -22,7 +22,7 @@ test('exclude', t => {
 
    const { data, error } = typea.strict(app, {
       other: {
-         index: Function,
+         index: Object,
          // oo: Object
       }
    })

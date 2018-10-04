@@ -4,13 +4,16 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
-test('run', t => {
+test('directory', t => {
 
    const app = {}
 
    lloader('app', app).load({
       "other": {
-         "level": 6
+         "level": 6,
+         directory(data){
+            return data
+         }
       },
       "controllers": {
          "level": 3

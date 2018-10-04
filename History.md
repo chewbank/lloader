@@ -14,3 +14,9 @@
 ### 1.0.5
 
 * 阻止覆盖已存在的同名对象
+
+### 1.0.6
+
+* 新增before、after钩子
+
+* 将import更名为module，complete更名为directory
