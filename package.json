@@ -1,6 +1,6 @@
 {
   "name": "lloader",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "node.js模块声明式分级、批量装载器",
   "main": "index.js",
   "dependencies": {},
