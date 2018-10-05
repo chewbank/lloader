@@ -53,12 +53,6 @@ lloader.lode()
 
          *  `exclude` *Array* - 排除指定模块或目录，不能与contain同时使用（支持子集继承）
 
-         *  `before(data ,container)` *Function* - 目录、模块加载前置钩子函数（仅在当前层级触发，不对子集继承）
-
-               *  `data` * - 当前目录、模块导出前的数据
-
-               *  `container` *String* - 当前目录、模块的父级容器
-
          *  `directory(data, name)` *Function* - 同一个配置目录下的所有子集导出完毕后的数据处理函数。如果无数据返回，则该目录结构体不会被创建（支持子集继承）
 
                *  `data` *Object* - 当前目录下所有子集导出数据集合
@@ -71,11 +65,9 @@ lloader.lode()
 
                *  `name` *String* - 当前模块名称，不含后缀
 
-         *  `after(data ,container)` *Function* - 目录、模块加载后置钩子函数（仅在当前层级触发，不对子集继承）
+         *  `before()` *Function* - 当前等级下所有目录、模块在加载前执行的钩子函数（仅在当前层级触发，不对子集继承）
 
-               *  `data` * - 当前目录、模块导出后的数据
-
-               *  `container` *String* - 当前目录、模块的父级容器
+         *  `after()` *Function* - 当前等级下所有目录、模块在加载后执行的钩子函数（仅在当前层级触发，不对子集继承）
 
 为当前目录实例下的一级子节点声明装载配置项。
 
@@ -147,13 +139,12 @@ lloader('app', app).set({
       },
    },
    "controller": {
-      "level": 3,
-      "contain": ["_route.js"],
+      "level": 3
    },
 })
 
 const user = {}
-lloader('components/user/app', user).set({
+lloader('app', user).set({
    "middleware": {
       "level": 5
    }
