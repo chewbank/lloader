@@ -45,13 +45,13 @@ lloader.lode()
 
 *  `options` *Object* 
 
-      *  `$name` *Object* - 装载选项名称
+      *  `$name` *Object, Boolean* - 装载选项名称，当值为false时表示排除指定目录或模块（无特殊说明时，所有子参数均为可选）
 
-         *  `level` *Number* - 加载等级
+         *  `level` *Number* - 加载等级，默认100
 
-         *  `contain` *Array* - 仅加载指定模块或目录，不能与exclude同时使用（可选）
+         *  `contain` *Array* - 仅加载指定模块或目录，不能与exclude同时使用（支持子集继承）
 
-         *  `exclude` *Array* - 排除指定模块或目录，不能与contain同时使用（可选）
+         *  `exclude` *Array* - 排除指定模块或目录，不能与contain同时使用（支持子集继承）
 
          *  `before(data ,container)` *Function* - 目录、模块加载前置钩子函数（仅在当前层级触发，不对子集继承）
 

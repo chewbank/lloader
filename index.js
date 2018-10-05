@@ -27,13 +27,13 @@ function lloader(dirPath, container) {
  */
 lloader.load = function () {
 
-   const list = []
+   const levels = {}
 
    for (const directory of common.directorys) {
-      loader.level(list, directory)
+      loader.level(levels, directory)
    }
 
-   loader.loader(list)
+   loader.loader(levels)
 
    common.directorys = []
 

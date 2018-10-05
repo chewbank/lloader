@@ -9,8 +9,20 @@ test('module', t => {
    const app = {}
 
    lloader('app', app).set({
+      "config": {
+         "level": 1,
+         before(data, container) {
+
+         },
+         after(data, container) {
+
+         }
+      },
       "model": {
-         "level": 1
+         "level": 1,
+         before(data, container) {
+
+         }
       },
       "controller": {
          "level": 3
@@ -20,8 +32,8 @@ test('module', t => {
          before(data, container) {
             // console.log('before', data, container)
          },
-         module(data) {
-            // console.log('module')
+         module(data, name) {
+            // console.log('other', name)
             return data
          },
          directory(data, name) {
@@ -52,5 +64,7 @@ test('module', t => {
    })
 
    t.ok(data, error)
+
+   t.ok(true)
 
 })
