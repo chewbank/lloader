@@ -43,9 +43,9 @@ lloader.lode()
 
 ### this.set(options)
 
-*  `options` *Object* 
+*  `options` *Object* 无特殊说明时，所有子参数均为可选
 
-      *  `$name` *Object* - 装载选项，$name对应目录名称或包含.js、.json后缀的文件名（无特殊说明时，所有子参数均为可选）
+      *  `$name` *Object, Boolean* - 装载选项，$name对应目录名称或包含.js、.json后缀的文件名。当值为false时表示不装载该目录或模块
 
          *  `level` *Number* - 加载等级，默认100
 
