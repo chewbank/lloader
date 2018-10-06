@@ -4,21 +4,13 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
-test('load', t => {
+test('app', t => {
 
    const app = {}
 
-   lloader('app', app).load({
-      "other": {
-         "level": 6
-      },
-      "controller": {
-         "level": 3
-      },
-      "model": {
-         "level": 1
-      }
-   })
+   lloader('app', app)
+   
+   lloader.load()
 
    const { data, error } = typea.strict(app, {
       config: { db: Function },
@@ -34,7 +26,8 @@ test('load', t => {
             s1: Function,
             s2: Function
          }
-      }
+      },
+      bb: Number
    })
 
    t.ok(data, error)

@@ -1,14 +1,17 @@
 'use strict';
 
 module.exports = {
+   'helper': {
+      level: 0
+   },
    'config': {
-      level: 1
+      level: 10
    },
    'model': {
-      level: 8
+      level: 20
    },
    'controller': {
-      level: 4,
+      level: 30,
       // module(data) {
       //    console.log(`controller module ${data}`)
       // },
@@ -17,10 +20,6 @@ module.exports = {
       // },
    },
    'bb.js': {
-      level: 3,
-      // module(data) {
-      //    console.log(data)
-      // }
-   },
-   'fl.js': false
+      level: 40
+   }
 }

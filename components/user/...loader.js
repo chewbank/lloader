@@ -1,23 +1,20 @@
 'use strict';
 
 module.exports = {
-   config: {
-      level: 1
-   },
    model: {
-      level: 2
-   },
-   middleware: {
-      level: 3
+      level: 20,
+      module(data) {
+         return data
+      }
    },
    controller: {
-      level: 4,
+      level: 30,
       module(data) {
          return data
       }
    },
    other: {
-      level: 6,
+      level: 40,
       module(data) {
          return data
       },

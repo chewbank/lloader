@@ -45,7 +45,7 @@ lloader.lode()
 
 *  `options` *Object* 
 
-      *  `$name` *Object, Boolean* - 装载选项名称，当值为false时表示排除指定目录或模块（无特殊说明时，所有子参数均为可选）
+      *  `$name` *Object* - 装载选项，$name对应目录名称或包含.js、.json后缀的文件名（无特殊说明时，所有子参数均为可选）
 
          *  `level` *Number* - 加载等级，默认100
 
@@ -74,7 +74,16 @@ lloader.lode()
 
 ### ...loader.js 配置文件
 
-每个目录均支持可选的加载配置文件，导出数据结构与set(options)一致，但优先级高于set(options)。
+每个目录均支持可选的装载配置文件，导出数据结构与set(options)一致，但优先级高于set(options)。
+
+#### 贪婪模式
+
+找不到...loader.js配置文件时为贪婪模式，即遍历加载当前目录下所有一级子节点。
+
+#### 惰性模式
+
+找到...loader.js文件时为惰性模式，仅装载配置文件中指定的配置项目。
+
 
 #### 示例
 
