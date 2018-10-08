@@ -2,7 +2,7 @@
 
 ### 1.0.3
 
-* ...load.js文件更名为...loader.js
+* ...load.js文件更名为.loader.js
 
 * 修改默认配置的加载等级为100
 
@@ -53,4 +53,8 @@
 
 ### 1.2.1
 
-* 重新加入options.$name对Boolean类型的支持，用于解决在无...loader.js的贪婪模式下通过set(options)实现排除目录、模块的功能
+* 重新加入options.$name对Boolean类型的支持，用于解决在无.loader.js的贪婪模式下通过set(options)实现排除目录、模块的功能
+
+### 1.3.0
+
+* 将...loader.js文件名替换为.loader.js
