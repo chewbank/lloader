@@ -1,9 +1,11 @@
 {
   "name": "lloader",
-  "version": "1.2.1",
+  "version": "1.4.0",
   "description": "node.js模块分级、递归装载器",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "ttools": "^3.0.5"
+  },
   "devDependencies": {
     "typea": "^4.2.0"
   },

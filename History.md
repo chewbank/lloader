@@ -58,3 +58,8 @@
 ### 1.3.0
 
 * 将...loader.js文件名替换为.loader.js
+
+
+### 1.4.0
+
+* 使用深度混合代替Object.assign的单层混合

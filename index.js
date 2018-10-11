@@ -2,7 +2,7 @@
 
 const loader = require('./lib/loader')
 const chain = require('./lib/chain')
-const common = require('./lib/common')
+const share = require('./lib/share')
 
 /**
  * 
@@ -15,7 +15,7 @@ function lloader(dirPath, container) {
 
    const directory = new chain(dirPath, container)
 
-   common.directorys.push(directory)
+   share.directorys.push(directory)
 
    return directory
 
@@ -29,13 +29,13 @@ lloader.load = function () {
 
    const levels = {}
 
-   for (const directory of common.directorys) {
+   for (const directory of share.directorys) {
       loader.level(levels, directory)
    }
 
    loader.loader(levels)
 
-   common.directorys = []
+   share.directorys = []
 
 }
 
