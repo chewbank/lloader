@@ -45,14 +45,11 @@ test('app', t => {
 })
 
 
-test('components', t => {
+test('apps', t => {
 
    const app = {}
 
-   lloader('components/user', app).set({
-      "other": {
-         "level": 5
-      },
+   lloader('apps/user', app).set({
       "controller": {
          "level": 3,
          module(data) {
@@ -61,7 +58,10 @@ test('components', t => {
          directory(data) {
             console.log('directory')
          }
-      }
+      },
+      "other": {
+         "level": 5
+      },
    })
 
    lloader.load()
@@ -105,7 +105,7 @@ test('mixin', t => {
 
    const user = {}
 
-   lloader('components/user', user).set({
+   lloader('apps/user', user).set({
       "controller": {
          "level": 30,
          module(data) {
