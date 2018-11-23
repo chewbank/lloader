@@ -1,8 +1,8 @@
 'use strict';
 
 const loader = require('./lib/loader')
-const chain = require('./lib/chain')
-const share = require('./lib/share')
+const Chain = require('./lib/chain')
+const common = require('./lib/common')
 
 /**
  * 
@@ -13,9 +13,9 @@ function lloader(dirPath, container) {
 
    if (!dirPath || !container) return
 
-   const directory = new chain(dirPath, container)
+   const directory = new Chain(dirPath, container)
 
-   share.directorys.push(directory)
+   common.directorys.push(directory)
 
    return directory
 
@@ -25,17 +25,20 @@ function lloader(dirPath, container) {
 /**
  * 批量执行装载器队列
  */
-lloader.load = function () {
+lloader.load =  function (func) {
 
    const levels = {}
 
-   for (const directory of share.directorys) {
+   for (const directory of common.directorys) {
+
       loader.level(levels, directory)
+
    }
 
-   loader.loader(levels)
+    loader.loader(levels)
 
-   share.directorys = []
+   // 批量装载完后重置容器
+   common.directorys = []
 
 }
 
