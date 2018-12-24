@@ -1,9 +1,5 @@
 'use strict';
 
-const loader = require('./lib/loader')
-const Chain = require('./lib/chain')
-const common = require('./lib/common')
-
 /**
  * 
  * @param {String} dirPath 加载目录的相对路径
@@ -15,11 +11,14 @@ function lloader(dirPath, container) {
 
    const directory = new Chain(dirPath, container)
 
-   common.directorys.push(directory)
+   lloader.directorys.push(directory)
 
    return directory
 
 }
+
+// 装载目录队列
+lloader.directorys = []
 
 
 /**
@@ -29,7 +28,7 @@ lloader.load =  function (func) {
 
    const levels = {}
 
-   for (const directory of common.directorys) {
+   for (const directory of lloader.directorys) {
 
       loader.level(levels, directory)
 
@@ -38,8 +37,12 @@ lloader.load =  function (func) {
     loader.loader(levels)
 
    // 批量装载完后重置容器
-   common.directorys = []
+   lloader.directorys = []
 
 }
 
 module.exports = lloader
+
+const Chain = require('./lib/Chain')
+const loader = require('./lib/loader')
+

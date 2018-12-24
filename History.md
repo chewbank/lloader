@@ -63,3 +63,7 @@
 ### 1.4.0
 
 * 使用深度混合代替Object.assign的单层混合
+
+### 1.4.1
+
+* 暴露lloader.directorys数组，供外部读写

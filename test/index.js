@@ -4,10 +4,11 @@ const test = require('jtf')
 const typea = require('typea')
 const lloader = require('..')
 
-
 test('app', t => {
 
    const app = {}
+
+   t.deepEqual([], lloader.directorys)
 
    lloader('app', app).set({
       "helper": {
@@ -21,7 +22,17 @@ test('app', t => {
       }
    })
 
+   let [item] = lloader.directorys
+
+   t.deepEqual({
+      helper: { level: 0 },
+      controller: { level: 3 },
+      model: { level: 2 }
+   }, item.subset)
+
    lloader.load()
+
+   t.deepEqual([], lloader.directorys)
 
    const { data, error } = typea.strict(app, {
       helper: {
