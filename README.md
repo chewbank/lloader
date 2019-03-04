@@ -38,7 +38,7 @@ lloader.lode()
 
 ### lloader(path ,container)
 
-*  `path` *String* 批量加载模块所在目录的相对路径
+*  `path` *String* 批量加载模块所在目录的绝对路径
 
 *  `container` *Object* 将模块导出结果保存到指定容器中
 

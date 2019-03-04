@@ -2,7 +2,11 @@
 
 const test = require('jtf')
 const typea = require('typea')
+const path = require('path')
 const lloader = require('..')
+
+const appPath = path.join(process.cwd(), 'app');
+const userPath = path.join(process.cwd(), 'apps/user');
 
 test('app', t => {
 
@@ -10,7 +14,7 @@ test('app', t => {
 
    t.deepEqual([], lloader.directorys)
 
-   lloader('app', app).set({
+   lloader(appPath, app).set({
       "helper": {
          "level": 0
       },
@@ -56,11 +60,13 @@ test('app', t => {
 })
 
 
+
 test('apps', t => {
 
    const app = {}
 
-   lloader('apps/user', app).set({
+
+   lloader(userPath, app).set({
       "controller": {
          "level": 3,
          module(data) {
@@ -101,7 +107,7 @@ test('mixin', t => {
 
    const app = {}
 
-   lloader('app', app).set({
+   lloader(appPath, app).set({
       "helper": {
          "level": 0
       },
@@ -116,7 +122,7 @@ test('mixin', t => {
 
    const user = {}
 
-   lloader('apps/user', user).set({
+   lloader(userPath, user).set({
       "controller": {
          "level": 30,
          module(data) {

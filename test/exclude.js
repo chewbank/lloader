@@ -2,13 +2,16 @@
 
 const test = require('jtf')
 const typea = require('typea')
+const path = require('path')
 const lloader = require('..')
+
+const appPath = path.join(process.cwd(), 'app');
 
 test('exclude', t => {
 
    const app = {}
 
-   lloader('app', app).set({
+   lloader(appPath, app).set({
       'other': {
          'level': 6,
          "exclude": ['of.js', 'oo']
@@ -16,7 +19,7 @@ test('exclude', t => {
    })
 
    lloader.load()
-   
+
    t.ok(!app.other.of)
    t.ok(!app.other.oo)
 

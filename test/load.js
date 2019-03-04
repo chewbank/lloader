@@ -2,13 +2,16 @@
 
 const test = require('jtf')
 const typea = require('typea')
+const path = require('path')
 const lloader = require('..')
+
+const appPath = path.join(process.cwd(), 'app');
 
 test('load', t => {
 
    const app = {}
 
-   lloader('app', app).load({
+   lloader(appPath, app).load({
       "other": {
          "level": 6
       },

@@ -67,3 +67,7 @@
 ### 1.4.1
 
 * 暴露lloader.directorys数组，供外部读写
+
+### 2.0.0
+
+将lloader()的path参数由相对路径改为绝对路径

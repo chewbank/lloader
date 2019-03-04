@@ -2,13 +2,16 @@
 
 const test = require('jtf')
 const typea = require('typea')
+const path = require('path')
 const lloader = require('..')
+
+const appPath = path.join(process.cwd(), 'app');
 
 test('app', t => {
 
    const app = {}
 
-   lloader('app', app)
+   lloader(appPath, app)
    
    lloader.load()
 
