@@ -50,7 +50,7 @@ Lloader.loadAll = function () {
 
 }
 
-// 装载目录队列
+// 暴露装载节点，方便调试
 Lloader.nodes = nodes;
 
 module.exports = Lloader;
