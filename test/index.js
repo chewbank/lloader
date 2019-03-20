@@ -28,10 +28,12 @@ test('app', t => {
          },
          "model": {
             "level": 2
-         }
+         },
       }).save(app);
 
       lloader.loadAll();
+
+      console.log(app)
 
       const { data, error } = typea.strict(app, {
          helper: {
@@ -61,6 +63,8 @@ test('app', t => {
    }
 
 })
+
+return
 
 
 test('apps', t => {
