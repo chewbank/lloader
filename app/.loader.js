@@ -13,13 +13,13 @@ module.exports = {
    'controller': {
       level: 30,
       // module(data) {
-      //    console.log(`controller module ${data}`)
+      //    console.log(`controller module`);
+      //    return data;
       // },
       // directory(data) {
-      //    console.log('controller directory model')
+      //    console.log('controller directory');
+      //    return data;
       // },
    },
-   'bb.js': {
-      level: 40
-   }
+   'bb': 20
 }

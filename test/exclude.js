@@ -11,23 +11,20 @@ test('exclude', t => {
 
    const app = {}
 
-   lloader(appPath, app).set({
+   lloader(appPath).load({
       'other': {
          'level': 6,
-         "exclude": ['of.js', 'oo']
+         "exclude": ['of', 'oo']
       },
-   })
+   }).save(app)
 
-   lloader.load()
+   lloader.loadAll()
 
    t.ok(!app.other.of)
    t.ok(!app.other.oo)
 
    const { data, error } = typea.strict(app, {
-      other: {
-         index: Object,
-         // oo: Object
-      }
+      other: {}
    })
 
    t.ok(data, error)

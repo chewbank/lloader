@@ -1,3 +1,3 @@
 module.exports = {
-   "xx": 666
+   tt: 5
 }

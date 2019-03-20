@@ -11,7 +11,10 @@ test('load', t => {
 
    const app = {}
 
-   lloader(appPath, app).load({
+   lloader(appPath).load({
+      "config": {
+         "level": 1
+      },
       "other": {
          "level": 6
       },
@@ -21,16 +24,19 @@ test('load', t => {
       "model": {
          "level": 1
       }
-   })
+   }).save(app);
+
+   lloader.loadAll();
 
    const { data, error } = typea.strict(app, {
-      config: { db: Function },
+      config: {
+         db: Function
+      },
       controller: {
          a: Function,
-         c1: { a: Function },
-         index: Function
+         c1: { a: Function }
       },
-      model: { index: Function },
+      model: Function,
       helper: {
          db: Function,
          sub: {

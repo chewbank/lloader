@@ -1,48 +1,56 @@
 'use strict';
 
+const common = require('./lib/common');
+const Node = require('./lib/node');
+const loader = require('./lib/loader');
+
+const { nodes } = common;
+
 /**
- * 
  * @param {String} dirPath 加载目录的相对路径
  * @param {Object} container 模块挂载容器
  */
-function lloader(dirPath, container) {
+function Lloader(dirPath) {
 
-   if (!dirPath || !container) return
+   if (!dirPath) return;
 
-   const directory = new Chain(dirPath, container)
+   const node = new Node(dirPath);
 
-   lloader.directorys.push(directory)
+   nodes.push(node);
 
-   return directory
+   return node;
 
 }
-
-// 装载目录队列
-lloader.directorys = []
 
 
 /**
  * 批量执行装载器队列
  */
-lloader.load =  function (func) {
+Lloader.loadAll = function () {
 
-   const levels = {}
+   const group = {};
 
-   for (const directory of lloader.directorys) {
-
-      loader.level(levels, directory)
-
+   for (const node of nodes) {
+      loader.level(node, group);
    }
 
-    loader.loader(levels)
+   // 显示加载顺序
+   for (const name in group) {
+      const { list } = group[name];
+      console.log(`\x1b[32m--------------------- loader \x1b[33m${name}\x1b[32m ---------------------\x1b[30m`);
+      for (const item of list) {
+         const { name, path } = item;
+         console.log(` \x1b[33m${name} \x1b[35m${path}\x1b[30m`);
+      }
+   }
 
-   // 批量装载完后重置容器
-   lloader.directorys = []
+   nodes.splice(0);
+
+   loader.loader(group);
 
 }
 
-module.exports = lloader
+// 装载目录队列
+Lloader.nodes = nodes;
 
-const Chain = require('./lib/Chain')
-const loader = require('./lib/loader')
-
+module.exports = Lloader;

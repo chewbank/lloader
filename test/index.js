@@ -10,92 +10,92 @@ const userPath = path.join(process.cwd(), 'apps/user');
 
 test('app', t => {
 
-   const app = {}
+   try {
 
-   t.deepEqual([], lloader.directorys)
+      const app = {};
 
-   lloader(appPath, app).set({
-      "helper": {
-         "level": 0
-      },
-      "controller": {
-         "level": 3
-      },
-      "model": {
-         "level": 2
-      }
-   })
+      t.deepEqual(lloader.nodes, []);
 
-   let [item] = lloader.directorys
-
-   t.deepEqual({
-      helper: { level: 0 },
-      controller: { level: 3 },
-      model: { level: 2 }
-   }, item.subset)
-
-   lloader.load()
-
-   t.deepEqual([], lloader.directorys)
-
-   const { data, error } = typea.strict(app, {
-      helper: {
-         db: Function,
-         sub: {
-            s1: Function,
-            s2: Function
+      lloader(appPath).load({
+         "helper": {
+            "level": 0
+         },
+         "other": {
+            "level": 0
+         },
+         "controller": {
+            "level": 3
+         },
+         "model": {
+            "level": 2
          }
-      },
-      config: { db: Function },
-      controller: {
-         a: Function,
-         c1: { a: Function },
-         index: Function
-      },
-      model: { index: Function }
-   })
+      }).save(app);
 
-   t.ok(data, error)
+      lloader.loadAll();
+
+      const { data, error } = typea.strict(app, {
+         helper: {
+            db: Function,
+            sub: {
+               ttf: {
+                  tt: Number
+               },
+               s1: Function,
+               s2: Function
+            }
+         },
+         config: { db: Function },
+         controller: {
+            a: Function,
+            c1: { a: Function }
+         },
+         model: Function
+      })
+
+      t.ok(data, error);
+
+   } catch (error) {
+
+      console.log(error);
+
+   }
 
 })
-
 
 
 test('apps', t => {
 
    const app = {}
 
-
-   lloader(userPath, app).set({
+   lloader(userPath).load({
       "controller": {
          "level": 3,
          module(data) {
-            console.log(`module`)
+            // console.log(`module`)
+            return data;
          },
          directory(data) {
-            console.log('directory')
+            return data;
+            // console.log('directory')
          }
       },
       "other": {
          "level": 5
       },
-   })
+   }).save(app)
 
-   lloader.load()
+   lloader.loadAll();
 
    const { data, error } = typea.strict(app, {
       controller: {
          a: Function,
-         c1: { a: Function },
-         index: Function
+         c1: { a: Function }
       },
       other: {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      model: {
-         index: Function
-      }
+      model: Function
    })
 
    t.ok(data, error)
@@ -107,7 +107,7 @@ test('mixin', t => {
 
    const app = {}
 
-   lloader(appPath, app).set({
+   lloader(appPath).load({
       "helper": {
          "level": 0
       },
@@ -117,12 +117,12 @@ test('mixin', t => {
       "controller": {
          "level": 30
       }
-   })
+   }).save(app)
 
 
    const user = {}
 
-   lloader(userPath, user).set({
+   lloader(userPath).load({
       "controller": {
          "level": 30,
          module(data) {
@@ -135,9 +135,9 @@ test('mixin', t => {
       "other": {
          "level": 40
       },
-   })
+   }).save(user)
 
-   lloader.load()
+   lloader.loadAll()
 
    const { data, error } = typea.strict(app, {
       helper: {
@@ -150,34 +150,25 @@ test('mixin', t => {
       config: { db: Function },
       controller: {
          a: Function,
-         c1: { a: Function },
-         index: Function
+         c1: { a: Function }
       },
-      model: { index: Function }
+      model: Function
    })
 
    t.ok(data, error)
 
-
    const userReslut = typea.strict(user, {
       controller: {
          a: Function,
-         c1: { a: Function },
-         index: Function
+         c1: { a: Function }
       },
       other: {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      model: {
-         index: Function
-      }
+      model: Function
    })
 
    t.ok(userReslut.data, userReslut.error)
 
 })
-
-
-
-
