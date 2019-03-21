@@ -26,7 +26,7 @@ function Lloader(dirPath) {
 /**
  * 批量执行装载器队列
  */
-Lloader.loadAll = function () {
+Lloader.loadAll = function (func) {
 
    const group = {};
 
@@ -34,17 +34,11 @@ Lloader.loadAll = function () {
       loader.level(node, group);
    }
 
-   // 显示加载顺序
-   for (const name in group) {
-      const { list } = group[name];
-      console.log(`\x1b[32m--------------------- loader \x1b[33m${name}\x1b[32m ---------------------\x1b[30m`);
-      for (const item of list) {
-         const { name, path } = item;
-         console.log(` \x1b[33m${name} \x1b[35m${path}\x1b[30m`);
-      }
-   }
-
    nodes.splice(0);
+
+   if (func) {
+      func(group);
+   }
 
    loader.loader(group);
 
