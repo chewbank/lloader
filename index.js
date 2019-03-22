@@ -1,32 +1,87 @@
 'use strict';
 
-const common = require('./lib/common');
-const Node = require('./lib/node');
+const path = require('path');
+const T = require('ttools');
 const loader = require('./lib/loader');
 
-const { nodes } = common;
+class Lloader {
+   /**
+    * @param {*} dirPath 模块路径
+    */
+   constructor(dirPath) {
 
-/**
- * @param {String} dirPath 加载目录的相对路径
- * @param {Object} container 模块挂载容器
- */
-function Lloader(dirPath) {
+      if (!dirPath) {
+         throw new Error('dirPath参数不能为空');
+      };
 
-   if (!dirPath) return;
+      this.dirPath = dirPath;
+      this.container = {};
+      this.children = {};
+      this.rootContainer = {};
 
-   const node = new Node(dirPath);
+      let loadPath = path.join(dirPath, '.loader.js');
 
-   nodes.push(node);
+      try {
+         loadPath = require.resolve(loadPath);
+      } catch (error) {
+         return
+      }
 
-   return node;
+      try {
+         const loadConfig = require(loadPath);
+         Object.assign(this.children, loadConfig);
+      } catch (error) {
+         throw error;
+      }
 
+   }
+   /**
+    * 添加分级加载项
+    * @param {Object} children 子集加载配置项
+    */
+   load(children) {
+
+      if (children) {
+         T(this.children).object({ mixin: children });
+      } else {
+         throw new Error('参数不能为空');
+      }
+
+      return this;
+
+   }
+   /**
+    * 保存到指定容器
+    * @param {*} container 
+    */
+   save(container) {
+
+      this.container = container;
+      this.rootContainer = container;
+
+      return this;
+
+   }
+   /**
+    * 即时执行单个加载器
+    * @param {Object} options 加载配置项
+    * @returns 返回加载器导出结果
+    */
+   run() {
+
+      const group = {};
+      loader.level(this, group);
+      loader.loader(group);
+
+      return this;
+
+   }
 }
-
 
 /**
  * 批量执行装载器队列
  */
-Lloader.loadAll = function (func) {
+Lloader.loadAll = function (nodes, log) {
 
    const group = {};
 
@@ -34,17 +89,14 @@ Lloader.loadAll = function (func) {
       loader.level(node, group);
    }
 
-   nodes.splice(0);
-
-   if (func) {
-      func(group);
+   if (log) {
+      log(group);
    }
 
    loader.loader(group);
 
-}
+   nodes.splice(0);
 
-// 暴露装载节点，方便调试
-Lloader.nodes = nodes;
+}
 
 module.exports = Lloader;

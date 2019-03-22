@@ -1,5 +1,3 @@
-module.exports = function (app) {
-   return {
-      "xx": 666
-   }
+module.exports = {
+   "xx": 666
 }

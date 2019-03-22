@@ -3,33 +3,51 @@
 const test = require('jtf')
 const typea = require('typea')
 const path = require('path')
-const lloader = require('..')
+const Lloader = require('..')
 
 const appPath = path.join(process.cwd(), 'app');
 
 test('directory', t => {
 
-   const app = {}
-
-   lloader(appPath).load({
-      "other": {
-         "level": 6,
-         directory(data){
-            return data
+   const app = {
+      apps: {
+         main: {
+            config: {
+               port: 8000
+            }
          }
+      }
+   }
+
+   const lloader = new Lloader(appPath);
+
+   lloader.load({
+      "config": {
+         "level": 0,
+         after(app) {
+            console.log(1111111111);
+            // const { main } = app.apps;
+            // Object.assign(app.config, main.config);
+         }
+      },
+      "model": {
+         "level": 1
       },
       "controller": {
          "level": 3
       },
-      "model": {
-         "level": 1
-      }
-   }).save(app)
+      "other": {
+         "level": 6,
+         directory(data) {
+            return data;
+         }
+      },
+   }).save(app);
 
-   lloader.loadAll();
+   Lloader.loadAll([lloader]);
 
    const { data, error } = typea.strict(app, {
-      config: { db: Function },
+      config: { db: Object },
       controller: {
          a: Function,
          c1: { a: Function }

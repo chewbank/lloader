@@ -3,7 +3,7 @@
 const test = require('jtf')
 const typea = require('typea')
 const path = require('path')
-const Lloader = require('..')
+const lloader = require('..')
 
 const appPath = path.join(process.cwd(), 'app');
 const userPath = path.join(process.cwd(), 'user');
@@ -31,7 +31,7 @@ test('app', t => {
          },
       }).save(app);
 
-      Lloader.loadAll([lloader]);
+      lloader.loadAll(lloader);
 
       const { data, error } = typea.strict(app, {
          helper: {
@@ -67,9 +67,7 @@ test('apps', t => {
 
    const app = {}
 
-   const lloader = new Lloader(userPath);
-
-   lloader.load({
+   lloader(userPath).load({
       "controller": {
          "level": 3,
          module(data) {
@@ -86,7 +84,7 @@ test('apps', t => {
       },
    }).save(app)
 
-   Lloader.loadAll([lloader]);
+   lloader.loadAll();
 
    const { data, error } = typea.strict(app, {
       controller: {

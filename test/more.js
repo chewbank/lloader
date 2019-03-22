@@ -3,16 +3,18 @@
 const test = require('jtf')
 const typea = require('typea')
 const path = require('path')
-const lloader = require('..')
+const Lloader = require('..')
 
 const appPath = path.join(process.cwd(), 'app');
-const userPath = path.join(process.cwd(), 'apps/user');
+const userPath = path.join(process.cwd(), 'user');
 
 test('多目录', t => {
 
-   const app = {}
+   const app = {};
 
-   lloader(appPath).load({
+   const lloader = new Lloader(appPath);
+
+   lloader.load({
       "helper": {
          "level": 0
       },
@@ -23,12 +25,13 @@ test('多目录', t => {
       "controller": {
          "level": 30
       }
-   }).save(app)
+   }).save(app);
 
+   const user = {};
 
-   const user = {}
+   const lloader2 = new Lloader(userPath);
 
-   lloader(userPath).load({
+   lloader2.load({
       "controller": {
          "level": 30,
          module(data) {
@@ -43,7 +46,7 @@ test('多目录', t => {
       },
    }).save(user)
 
-   lloader.loadAll()
+   Lloader.loadAll([lloader, lloader2]);
 
    const { data, error } = typea.strict(app, {
       helper: {
@@ -53,7 +56,7 @@ test('多目录', t => {
             s2: Function
          }
       },
-      config: { db: Function },
+      config: { db: Object },
       controller: {
          a: Function,
          c1: { a: Function }
