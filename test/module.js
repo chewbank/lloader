@@ -25,8 +25,8 @@ test('module', t => {
       },
       "other": {
          "level": 6,
-         before(data, container) {
-            // console.log('before', data, container)
+         before(container) {
+            // console.log('before', container)
          },
          module(data, name) {
             // console.log('other', name)
