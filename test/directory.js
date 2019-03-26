@@ -19,7 +19,7 @@ test('directory', t => {
       }
    }
 
-   const lloader = new Lloader(appPath);
+   const lloader = new Lloader(appPath, app);
 
    lloader.load({
       "config": {
@@ -42,7 +42,7 @@ test('directory', t => {
             return data;
          }
       },
-   }).save(app);
+   })
 
    Lloader.loadAll([lloader]);
 

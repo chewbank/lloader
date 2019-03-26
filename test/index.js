@@ -10,7 +10,7 @@ test('module', t => {
 
    const app = {}
 
-   const lloader = new Lloader(appPath);
+   const lloader = new Lloader(appPath, app);
 
    lloader.load({
       "index.js": {
@@ -19,7 +19,7 @@ test('module', t => {
       "mm.js": {
          "level": 1
       },
-   }).save(app);
+   })
 
    Lloader.loadAll([lloader]);
 

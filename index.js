@@ -8,22 +8,23 @@ class Lloader {
    /**
     * @param {*} dirPath 模块路径
     */
-   constructor(dirPath) {
+   constructor(dirPath, container, children = {}) {
 
       if (!dirPath) {
          throw new Error('dirPath参数不能为空');
       };
 
       this.dirPath = dirPath;
-      this.container = {};
+      this.container = container;
+      this.rootContainer = container;
       this.children = {};
-      this.rootContainer = {};
 
       let loadPath = path.join(dirPath, '.loader.js');
 
       try {
          loadPath = require.resolve(loadPath);
       } catch (error) {
+         this.children = children;
          return
       }
 
@@ -46,18 +47,6 @@ class Lloader {
       } else {
          throw new Error('参数不能为空');
       }
-
-      return this;
-
-   }
-   /**
-    * 保存到指定容器
-    * @param {*} container 
-    */
-   save(container) {
-
-      this.container = container;
-      this.rootContainer = container;
 
       return this;
 

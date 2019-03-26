@@ -14,7 +14,7 @@ test('app', t => {
 
       const app = {};
 
-      const lloader = new Lloader(appPath);
+      const lloader = new Lloader(appPath, app);
 
       lloader.load({
          "helper": {
@@ -29,7 +29,7 @@ test('app', t => {
          "model": {
             "level": 2
          },
-      }).save(app);
+      })
 
       Lloader.loadAll([lloader]);
 
@@ -67,7 +67,7 @@ test('apps', t => {
 
    const app = {}
 
-   const lloader = new Lloader(userPath);
+   const lloader = new Lloader(userPath, app);
 
    lloader.load({
       "controller": {
@@ -84,7 +84,7 @@ test('apps', t => {
       "other": {
          "level": 5
       },
-   }).save(app)
+   })
 
    Lloader.loadAll([lloader]);
 

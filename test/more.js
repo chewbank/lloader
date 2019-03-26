@@ -12,7 +12,7 @@ test('多目录', t => {
 
    const app = {};
 
-   const lloader = new Lloader(appPath);
+   const lloader = new Lloader(appPath, app);
 
    lloader.load({
       "helper": {
@@ -25,11 +25,11 @@ test('多目录', t => {
       "controller": {
          "level": 30
       }
-   }).save(app);
+   })
 
    const user = {};
 
-   const lloader2 = new Lloader(userPath);
+   const lloader2 = new Lloader(userPath, user);
 
    lloader2.load({
       "controller": {
@@ -44,7 +44,7 @@ test('多目录', t => {
       "other": {
          "level": 40
       },
-   }).save(user)
+   })
 
    Lloader.loadAll([lloader, lloader2]);
 

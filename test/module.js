@@ -11,7 +11,7 @@ test('module', t => {
 
    const app = {}
 
-   const lloader = new Lloader(appPath);
+   const lloader = new Lloader(appPath, app);
 
    lloader.load({
       "config": {
@@ -37,7 +37,7 @@ test('module', t => {
             return data
          },
       },
-   }).save(app);
+   })
 
    Lloader.loadAll([lloader]);
 
