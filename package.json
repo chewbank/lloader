@@ -1,6 +1,6 @@
 {
   "name": "lloader",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0-alpha.5",
   "description": "node.js模块分级、递归装载器",
   "main": "index.js",
   "dependencies": {
