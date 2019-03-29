@@ -2,7 +2,8 @@
 
 const path = require('path');
 const T = require('ttools');
-const loader = require('./lib/loader');
+const level = require('./lib/level.js');
+const loader = require('./lib/loader.js');
 
 class Lloader {
    /**
@@ -59,7 +60,9 @@ class Lloader {
    run() {
 
       const group = {};
-      loader.level(this, group);
+
+      level(this, group);
+
       loader.loader(group);
 
       return this;
@@ -75,7 +78,7 @@ Lloader.loadAll = function (nodes, log) {
    const group = {};
 
    for (const node of nodes) {
-      loader.level(node, group);
+      level(node, group);
    }
 
    if (log) {
