@@ -13,7 +13,7 @@ test('load', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "config": {
          "level": 1
       },
@@ -27,8 +27,8 @@ test('load', t => {
          "level": 1
       }
    })
-
-   Lloader.loadAll([lloader]);
+   
+   lloader.load();
 
    const { data, error } = typea.strict(app, {
       config: {

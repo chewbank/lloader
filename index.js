@@ -2,14 +2,13 @@
 
 const path = require('path');
 const T = require('ttools');
-const level = require('./lib/level.js');
 const loader = require('./lib/loader.js');
 
 class Lloader {
    /**
     * @param {*} dirPath 模块路径
     */
-   constructor(dirPath, container, children = {}) {
+   constructor(dirPath, container, levels = {}) {
 
       if (!dirPath) {
          throw new Error('dirPath参数不能为空');
@@ -18,33 +17,29 @@ class Lloader {
       this.dirPath = dirPath;
       this.container = container;
       this.rootContainer = container;
-      this.children = {};
+      this.levels = {};
 
       let loadPath = path.join(dirPath, '.loader.js');
 
       try {
          loadPath = require.resolve(loadPath);
       } catch (error) {
-         this.children = children;
+         this.levels = levels;
          return
       }
 
-      try {
-         const loadConfig = require(loadPath);
-         Object.assign(this.children, loadConfig);
-      } catch (error) {
-         throw error;
-      }
+      const loadConfig = require(loadPath);
+      Object.assign(this.levels, loadConfig);
 
    }
    /**
     * 添加分级加载项
-    * @param {Object} children 子集加载配置项
+    * @param {Object} levels 子集加载配置项
     */
-   load(children) {
+   addLevels(levels) {
 
-      if (children) {
-         T(this.children).object({ mixin: children });
+      if (levels) {
+         T(this.levels).object({ mixin: levels });
       } else {
          throw new Error('参数不能为空');
       }
@@ -53,17 +48,17 @@ class Lloader {
 
    }
    /**
-    * 即时执行单个加载器
+    * 执行单个levels配置
     * @param {Object} options 加载配置项
     * @returns 返回加载器导出结果
     */
-   run() {
+   load() {
 
       const group = {};
 
-      level(this, group);
+      loader.level(this, group);
 
-      loader.loader(group);
+      loader.load(group);
 
       return this;
 
@@ -72,21 +67,22 @@ class Lloader {
 
 /**
  * 批量执行装载器队列
+ * @param {Array} nodes 加载配置项
+ * @param {Function} func 加载完成后的回调函数
+ * @returns 返回加载器导出结果
  */
-Lloader.loadAll = function (nodes, log) {
+Lloader.loadAll = function (nodes, func) {
 
    const group = {};
 
    for (const node of nodes) {
-      level(node, group);
+      loader.level(node, group);
    }
 
-   if (log) {
-      log(group);
-   }
+   loader.load(group);
 
-   loader.loader(group);
-
+   if (func) func(group);
+   
    nodes.splice(0);
 
 }

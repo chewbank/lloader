@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const test = require('jtf')
 const path = require('path')
@@ -12,7 +12,7 @@ test('module', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "index.js": {
          "level": 1
       },
@@ -22,8 +22,6 @@ test('module', t => {
    })
 
    Lloader.loadAll([lloader]);
-
-   console.log(app)
 
    t.ok(true)
 

@@ -1,9 +1,9 @@
-"use strict"
+"use strict";
 
-const test = require('jtf')
-const typea = require('typea')
-const path = require('path')
-const Lloader = require('..')
+const test = require('jtf');
+const typea = require('typea');
+const path = require('path');
+const Lloader = require('..');
 
 const appPath = path.join(process.cwd(), 'app');
 const userPath = path.join(process.cwd(), 'user');
@@ -16,7 +16,7 @@ test('app', t => {
 
       const lloader = new Lloader(appPath, app);
 
-      lloader.load({
+      lloader.addLevels({
          "helper": {
             "level": 0
          },
@@ -69,7 +69,7 @@ test('apps', t => {
 
    const lloader = new Lloader(userPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "controller": {
          "level": 3,
          module(data) {

@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const test = require('jtf')
 const typea = require('typea')
@@ -21,11 +21,10 @@ test('directory', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "config": {
          "level": 0,
          after(app) {
-            console.log(1111111111);
             // const { main } = app.apps;
             // Object.assign(app.config, main.config);
          }

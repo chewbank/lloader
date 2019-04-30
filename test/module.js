@@ -13,7 +13,7 @@ test('module', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "config": {
          "level": 1
       },

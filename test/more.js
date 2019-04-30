@@ -14,11 +14,11 @@ test('多目录', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.load({
+   lloader.addLevels({
       "helper": {
          "level": 0
       },
-   }).load({
+   }).addLevels({
       "model": {
          "level": 20
       },
@@ -31,7 +31,7 @@ test('多目录', t => {
 
    const lloader2 = new Lloader(userPath, user);
 
-   lloader2.load({
+   lloader2.addLevels({
       "controller": {
          "level": 30,
          module(data) {
