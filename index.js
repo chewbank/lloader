@@ -17,19 +17,21 @@ class Lloader {
       this.dirPath = dirPath;
       this.container = container;
       this.rootContainer = container;
-      this.levels = {};
 
       let loadPath = path.join(dirPath, '.loader.js');
+      let resolvePath;
 
       try {
-         loadPath = require.resolve(loadPath);
+         resolvePath = require.resolve(loadPath);
       } catch (error) {
-         this.levels = levels;
-         return
+
       }
 
-      const loadConfig = require(loadPath);
-      Object.assign(this.levels, loadConfig);
+      if (resolvePath) {
+         this.levels = require(resolvePath);
+      } else {
+         this.levels = levels; // .loader.js缺省状态下用levels填充
+      }
 
    }
    /**
