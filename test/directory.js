@@ -1,9 +1,9 @@
 "use strict";
 
-const test = require('jtf')
-const typea = require('typea')
-const path = require('path')
-const Lloader = require('..')
+const test = require('jtf');
+const typea = require('typea');
+const path = require('path');
+const Lloader = require('..');
 
 const appPath = path.join(process.cwd(), 'app');
 
@@ -61,6 +61,6 @@ test('directory', t => {
       }
    })
 
-   t.ok(data, error)
+   t.ok(data, error);
 
 })

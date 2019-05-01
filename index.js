@@ -1,7 +1,7 @@
 'use strict';
 
-const path = require('path');
 const T = require('ttools');
+const path = require('path');
 const loader = require('./lib/loader.js');
 
 class Lloader {
@@ -81,9 +81,9 @@ Lloader.loadAll = function (nodes, func) {
       loader.level(node, group);
    }
 
-   loader.load(group);
-
    if (func) func(group);
+   
+   loader.load(group);
    
    nodes.splice(0);
 
