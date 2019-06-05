@@ -4,6 +4,7 @@ const test = require('jtf');
 const typea = require('typea');
 const path = require('path');
 const Lloader = require('..');
+const mixin = require('./mixin.js');
 
 const appPath = path.join(process.cwd(), 'app');
 
@@ -11,7 +12,7 @@ test('module', t => {
 
    const app = {}
 
-   const lloader = new Lloader(appPath, app);
+   const lloader = new Lloader(appPath, app, mixin);
 
    lloader.addLevels({
       "config": {

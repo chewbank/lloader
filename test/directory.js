@@ -4,6 +4,7 @@ const test = require('jtf');
 const typea = require('typea');
 const path = require('path');
 const Lloader = require('..');
+const mixin = require('./mixin.js');
 
 const appPath = path.join(process.cwd(), 'app');
 
@@ -19,14 +20,13 @@ test('directory', t => {
       }
    }
 
-   const lloader = new Lloader(appPath, app);
+   const lloader = new Lloader(appPath, app, mixin);
 
    lloader.addLevels({
       "config": {
          "level": 0,
-         after(app) {
-            // const { main } = app.apps;
-            // Object.assign(app.config, main.config);
+         after(data) {
+            t.deepEqual(data, { db: { xx: 666 } });
          }
       },
       "model": {

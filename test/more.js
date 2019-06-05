@@ -4,6 +4,7 @@ const test = require('jtf')
 const typea = require('typea')
 const path = require('path')
 const Lloader = require('..')
+const mixin = require('./mixin.js');
 
 const appPath = path.join(process.cwd(), 'app');
 const userPath = path.join(process.cwd(), 'user');
@@ -12,7 +13,7 @@ test('多目录', t => {
 
    const app = {};
 
-   const lloader = new Lloader(appPath, app);
+   const lloader = new Lloader(appPath, app, mixin);
 
    lloader.addLevels({
       "helper": {
@@ -29,7 +30,7 @@ test('多目录', t => {
 
    const user = {};
 
-   const lloader2 = new Lloader(userPath, user);
+   const lloader2 = new Lloader(userPath, user, mixin);
 
    lloader2.addLevels({
       "controller": {

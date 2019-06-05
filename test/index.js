@@ -3,6 +3,7 @@
 const test = require('jtf')
 const path = require('path')
 const Lloader = require('..')
+const mixin = require('./mixin.js');
 
 const appPath = path.join(process.cwd(), 'index');
 
@@ -10,7 +11,7 @@ test('module', t => {
 
    const app = {}
 
-   const lloader = new Lloader(appPath, app);
+   const lloader = new Lloader(appPath, app, mixin);
 
    lloader.addLevels({
       "index.js": {
