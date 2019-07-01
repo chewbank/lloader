@@ -25,7 +25,7 @@ test('directory', t => {
    lloader.addLevels({
       "config": {
          "level": 0,
-         after(data) {
+         after({ data }) {
             t.deepEqual(data, { db: { xx: 666 } });
          }
       },
