@@ -30,6 +30,9 @@ test('app', t => {
          "model": {
             "level": 2
          },
+         "database": {
+            "level": 6
+         },
       })
 
       Lloader.loadAll([lloader]);
@@ -50,7 +53,12 @@ test('app', t => {
             a: Function,
             c1: { a: Function }
          },
-         model: Function
+         model: Function,
+         database: {
+            abc: {
+               "name": String
+            }
+         }
       });
 
       t.ok(data, error);
