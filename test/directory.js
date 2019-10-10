@@ -22,7 +22,7 @@ test('directory', t => {
 
    const lloader = new Lloader(appPath, app, mixin);
 
-   lloader.addLevels({
+   lloader.addLoads({
       "config": {
          "level": 0,
          after({ data }) {

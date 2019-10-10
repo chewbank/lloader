@@ -15,11 +15,11 @@ test('多目录', t => {
 
    const lloader = new Lloader(appPath, app, mixin);
 
-   lloader.addLevels({
+   lloader.addLoads({
       "helper": {
          "level": 0
       },
-   }).addLevels({
+   }).addLoads({
       "model": {
          "level": 20
       },
@@ -32,7 +32,7 @@ test('多目录', t => {
 
    const lloader2 = new Lloader(userPath, user, mixin);
 
-   lloader2.addLevels({
+   lloader2.addLoads({
       "controller": {
          "level": 30,
          module(data) {

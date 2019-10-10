@@ -17,7 +17,7 @@ test('app', t => {
 
       const lloader = new Lloader(appPath, app, mixin);
 
-      lloader.addLevels({
+      lloader.addLoads({
          "helper": {
             "level": 0
          },
@@ -78,7 +78,7 @@ test('apps', t => {
 
    const lloader = new Lloader(userPath, app, mixin);
 
-   lloader.addLevels({
+   lloader.addLoads({
       "controller": {
          "level": 3,
          module(data) {

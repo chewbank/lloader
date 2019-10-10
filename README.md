@@ -27,7 +27,7 @@ const container = {};
 
 const lloader = new Lloader("/home/project/", container);
 
-lloader.addLevels({
+lloader.addLoads({
    "a.js": {
       "level": 1
    },
@@ -67,15 +67,15 @@ const lloader2 = new Lloader("/home/project2/", container2, {
 Lloader.loadAll([lloader, lloader2]);
 ```
 
-### Lloader(dirPath, container, levels)
+### Lloader(dirPath, container, loads)
 
 *  `dirPath` *String* 加载模块所在目录的绝对路径
 
 *  `container` *Object* 装载数据存储容器
 
-*  `levels` *Object* 加载配置项
+*  `loads` *Object* 加载配置项
 
-*  `return` *Object* 装载器实例
+*  `@return` *Object* 装载器实例
 
 添加目录装载项，返回当前目录配置实例
 
@@ -87,13 +87,13 @@ Lloader.loadAll([lloader, lloader2]);
 Lloader静态方法，用于平行加载多个项目
 
 
-### lloader.addLevels(options)
+### lloader.addLoads(options)
 
 *  `options` *Object* - 所有子选项均为可选
 
       *  `$name` *Object, Boolean* - 装载选项，$name对应目录名称或包含.js、.json后缀的文件名。当值为false时表示不装载该目录或模块
 
-         *  `level` *Number* - 加载等级，默认值100
+         *  `level` *Number* - 加载等级
 
          *  `directory(data, name)` *Function* - 目录加载完毕的回调函数，支持子集继承。如果无数据返回，则该目录结构不会被创建。
 

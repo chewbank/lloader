@@ -21,5 +21,7 @@ module.exports = {
       //    return data;
       // },
    },
-   'bb': 20
+   'bb': {
+      level: 20
+   }
 }

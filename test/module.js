@@ -14,7 +14,7 @@ test('module', t => {
 
    const lloader = new Lloader(appPath, app, mixin);
 
-   lloader.addLevels({
+   lloader.addLoads({
       "config": {
          "level": 1
       },
