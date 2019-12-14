@@ -1,6 +1,6 @@
 {
   "name": "lloader",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "description": "node.js模块分级、递归装载器",
   "main": "lib/index.js",
   "dependencies": {
@@ -8,7 +8,7 @@
     "ttools": "^3.1.0"
   },
   "devDependencies": {
-    "typea": "^4.4.5"
+    "typea": "^5.0.1"
   },
   "scripts": {
     "test": "jtf"
@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/xiangle/lloader#readme",
   "files": [
-    "index.js",
     "lib"
   ]
 }

@@ -4,7 +4,7 @@ const test = require('jtf');
 const typea = require('typea');
 const path = require('path');
 const Lloader = require('..');
-const mixin = require('./mixin.js');
+const base = require('./base.js');
 
 const appPath = path.join(process.cwd(), 'app');
 
@@ -20,7 +20,7 @@ test('directory', t => {
       }
    }
 
-   const lloader = new Lloader(appPath, app, mixin);
+   const lloader = new Lloader(appPath, app, base);
 
    lloader.addLoads({
       "config": {
@@ -45,13 +45,15 @@ test('directory', t => {
 
    Lloader.loadAll([lloader]);
 
-   const { data, error } = typea.strict(app, {
+   const { data, error } = typea({
       config: { db: Object },
       controller: {
          a: Function,
          c1: { a: Function }
       },
-      model: Function,
+      model: {
+         m2: {}
+      },
       helper: {
          db: Function,
          sub: {
@@ -59,7 +61,7 @@ test('directory', t => {
             s2: Function
          }
       }
-   })
+   }).strictVerify(app);
 
    t.ok(data, error);
 

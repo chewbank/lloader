@@ -24,7 +24,9 @@ test('module', t => {
    Lloader.loadAll([lloader]);
 
    t.deepStrictEqual(app, {
-      tt: 999,
+      index:{
+         tt: 999
+      },
       mm: {
          sst: 668
       }

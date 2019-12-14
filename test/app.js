@@ -4,7 +4,7 @@ const test = require('jtf');
 const typea = require('typea');
 const path = require('path');
 const Lloader = require('..');
-const mixin = require('./mixin.js');
+const base = require('./base.js');
 
 const appPath = path.join(process.cwd(), 'app');
 const userPath = path.join(process.cwd(), 'user');
@@ -15,7 +15,7 @@ test('app', t => {
 
       const app = {};
 
-      const lloader = new Lloader(appPath, app, mixin);
+      const lloader = new Lloader(appPath, app, base);
 
       lloader.addLoads({
          "helper": {
@@ -37,12 +37,17 @@ test('app', t => {
 
       Lloader.loadAll([lloader]);
 
-      const { data, error } = typea.strict(app, {
+      const { data, error } = typea({
          helper: {
             db: Function,
             sub: {
                ttf: {
-                  tt: Number
+                  index: {
+                     tt: 5
+                  },
+                  jbp: {
+                     "gg": 888
+                  }
                },
                s1: Function,
                s2: Function
@@ -53,13 +58,15 @@ test('app', t => {
             a: Function,
             c1: { a: Function }
          },
-         model: Function,
+         model: {
+            m2: {}
+         },
          database: {
             abc: {
                "name": String
             }
          }
-      });
+      }).strictVerify(app);
 
       t.ok(data, error);
 
@@ -76,7 +83,7 @@ test('apps', t => {
 
    const app = {}
 
-   const lloader = new Lloader(userPath, app, mixin);
+   const lloader = new Lloader(userPath, app, base);
 
    lloader.addLoads({
       "controller": {
@@ -97,7 +104,7 @@ test('apps', t => {
 
    Lloader.loadAll([lloader]);
 
-   const { data, error } = typea.strict(app, {
+   const { data, error } = typea({
       controller: {
          a: Function,
          c1: { a: Function }
@@ -106,9 +113,11 @@ test('apps', t => {
          db: Function,
          sub: { s1: Function, s2: Function }
       },
-      model: Function
-   })
+      model: {
+         index: Function
+      }
+   }).strictVerify(app);
 
-   t.ok(data, error)
+   t.ok(data, error);
 
 })
