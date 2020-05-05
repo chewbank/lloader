@@ -71,7 +71,7 @@ Lloader.loadAll([lloader, lloader2]);
 
 *  `dirPath` *String* 加载模块所在目录的绝对路径
 
-*  `container` *Object* 装载数据存储容器
+*  `container` *Object* 装载数据根容器
 
 *  `loads` *Object* 加载配置项
 
@@ -95,6 +95,14 @@ Lloader静态方法，用于平行加载多个项目
 
          *  `level` *Number* - 加载等级
 
+         *  `before(options)` *Function* - 当前等级下所有目录、模块在加载前执行的钩子函数（仅在当前层级触发，不对子集继承）
+
+               *  `data` * - 当前目录、模块导出数据
+
+               *  `dirList` * - 当前目录下的文件名列表
+
+               *  `root` * - 根节点
+               
          *  `directory(data, name)` *Function* - 目录加载完毕的回调函数，支持子集继承。如果无数据返回，则该目录结构不会被创建。
 
                *  `data` *Object* - 当前目录下所有子集导出数据集合
@@ -106,14 +114,6 @@ Lloader静态方法，用于平行加载多个项目
                *  `data` * - 当前模块导出数据
 
                *  `name` *String* - 当前模块名称，不含后缀
-
-         *  `before(options)` *Function* - 当前等级下所有目录、模块在加载前执行的钩子函数（仅在当前层级触发，不对子集继承）
-
-               *  `data` * - 当前目录、模块导出数据
-
-               *  `dirList` * - 当前目录下的文件名列表
-
-               *  `root` * - 根节点
 
          *  `after(options)` *Function* - 当前等级下所有目录、模块在加载后执行的钩子函数（仅在当前层级触发，不对子集继承），参数与before(options)一致
 
