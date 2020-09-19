@@ -102,12 +102,6 @@ Lloader静态方法，用于平行加载多个项目
                *  `dirList` * - 当前目录下的文件名列表
 
                *  `root` * - 根节点
-               
-         *  `directory(data, name)` *Function* - 目录加载完毕的回调函数，支持子集继承。如果无数据返回，则该目录结构不会被创建。
-
-               *  `data` *Object* - 当前目录下所有子集导出数据集合
-
-               *  `name` *String* - 当前目录名称
 
          *  `module(data, name)` *Function* - 模块加载完毕的回调函数，this指向当前层级容器。如果无数据返回，则该模块输出为空。
 
@@ -115,6 +109,12 @@ Lloader静态方法，用于平行加载多个项目
 
                *  `name` *String* - 当前模块名称，不含后缀
 
+         *  `directory(data, name)` *Function* - 目录加载完毕的回调函数，支持子集继承。如果无数据返回，则该目录结构不会被创建。
+
+               *  `data` *Object* - 当前目录下所有子集导出数据集合
+
+               *  `name` *String* - 当前目录名称
+               
          *  `after(options)` *Function* - 当前等级下所有目录、模块在加载后执行的钩子函数（仅在当前层级触发，不对子集继承），参数与before(options)一致
 
 

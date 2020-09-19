@@ -1,10 +1,11 @@
 "use strict";
 
-const test = require('jtf')
+const test = require('jmr')
 const path = require('path')
-const Lloader = require('..')
 
-const appPath = path.join(process.cwd(), 'index');
+const { Lloader } = test;
+
+const appPath = path.join(process.cwd(), 'admin');
 
 test('module', t => {
 
@@ -24,7 +25,7 @@ test('module', t => {
    Lloader.loadAll([lloader]);
 
    t.deepStrictEqual(app, {
-      index:{
+      index: {
          tt: 999
       },
       mm: {

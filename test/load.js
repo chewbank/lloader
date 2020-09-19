@@ -1,12 +1,13 @@
 "use strict"
 
-const test = require('jtf')
+const test = require('jmr')
 const typea = require('typea')
 const path = require('path')
-const Lloader = require('..')
 const base = require('./base.js');
 
 const appPath = path.join(process.cwd(), 'app');
+
+const { Lloader } = test;
 
 test('load', t => {
 
