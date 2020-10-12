@@ -3,7 +3,7 @@
 const test = require('jmr')
 const typea = require('typea')
 const path = require('path')
-const base = require('./base.js');
+const options = require('./options.js');
 
 const { Lloader } = test;
 
@@ -14,13 +14,15 @@ test('多目录', t => {
 
    const app = {};
 
-   const lloader = new Lloader(appPath, app, base);
+   const lloader = new Lloader(appPath, app, options);
 
-   lloader.addLoads({
+   lloader.add({
       "helper": {
          "level": 0
       },
-   }).addLoads({
+   })
+   
+   lloader.add({
       "model": {
          "level": 20
       },
@@ -31,9 +33,9 @@ test('多目录', t => {
 
    const user = {};
 
-   const lloader2 = new Lloader(userPath, user, base);
+   const lloader2 = new Lloader(userPath, user, options);
 
-   lloader2.addLoads({
+   lloader2.add({
       "controller": {
          "level": 30,
          module(data) {

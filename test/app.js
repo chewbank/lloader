@@ -3,7 +3,7 @@
 const test = require('jmr');
 const typea = require('typea');
 const path = require('path');
-const base = require('./base.js');
+const options = require('./options.js');
 
 const appPath = path.join(process.cwd(), 'app');
 const userPath = path.join(process.cwd(), 'user');
@@ -14,11 +14,11 @@ test('app', t => {
 
    try {
 
-      const app = {};
+      const app = { main: {} };
 
-      const lloader = new Lloader(appPath, app, base);
+      const lloader = new Lloader(appPath, app, options);
 
-      lloader.addLoads({
+      lloader.add({
          "helper": {
             "level": 0
          },
@@ -84,9 +84,9 @@ test('apps', t => {
 
    const app = {}
 
-   const lloader = new Lloader(userPath, app, base);
+   const lloader = new Lloader(userPath, app, options);
 
-   lloader.addLoads({
+   lloader.add({
       "controller": {
          "level": 3,
          module(data) {

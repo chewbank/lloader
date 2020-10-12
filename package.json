@@ -1,6 +1,6 @@
 {
   "name": "lloader",
-  "version": "4.4.3",
+  "version": "5.0.0",
   "description": "node.js模块分级、递归装载器",
   "main": "lib/index.js",
   "dependencies": {},

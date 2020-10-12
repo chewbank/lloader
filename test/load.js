@@ -3,7 +3,7 @@
 const test = require('jmr')
 const typea = require('typea')
 const path = require('path')
-const base = require('./base.js');
+const options = require('./options.js');
 
 const appPath = path.join(process.cwd(), 'app');
 
@@ -11,11 +11,11 @@ const { Lloader } = test;
 
 test('load', t => {
 
-   const app = {}
+   const app = {};
 
-   const lloader = new Lloader(appPath, app, base);
+   const lloader = new Lloader(appPath, app, options);
 
-   lloader.addLoads({
+   lloader.add({
       "config": {
          "level": 1
       },

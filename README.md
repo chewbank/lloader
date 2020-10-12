@@ -27,7 +27,7 @@ const container = {};
 
 const lloader = new Lloader("/home/project/", container);
 
-lloader.addLoads({
+lloader.add({
    "a.js": {
       "level": 1
    },
@@ -87,9 +87,9 @@ Lloader.loadAll([lloader, lloader2]);
 Lloader静态方法，用于平行加载多个项目
 
 
-### lloader.addLoads(options)
+### lloader.add(options)
 
-*  `options` *Object* - 所有子选项均为可选
+*  `options` *Object*
 
       *  `$name` *Object, Boolean* - 装载选项，$name对应目录名称或包含.js、.json后缀的文件名。当值为false时表示不装载该目录或模块
 
@@ -99,9 +99,11 @@ Lloader静态方法，用于平行加载多个项目
 
                *  `data` * - 当前目录、模块导出数据
 
-               *  `dirList` * - 当前目录下的文件名列表
+               *  `dirList` *Array* - 当前目录下的文件名列表
 
-               *  `root` * - 根节点
+               *  `parents` *Object* - 父节点
+
+               *  `root` *Object* - 根节点
 
          *  `module(data, name)` *Function* - 模块加载完毕的回调函数，this指向当前层级容器。如果无数据返回，则该模块输出为空。
 
@@ -114,7 +116,9 @@ Lloader静态方法，用于平行加载多个项目
                *  `data` *Object* - 当前目录下所有子集导出数据集合
 
                *  `name` *String* - 当前目录名称
-               
+
+         *  `action(options)` *Function* - 函数加载项，不需要关联目录和文件的纯函数虚拟加载点
+
          *  `after(options)` *Function* - 当前等级下所有目录、模块在加载后执行的钩子函数（仅在当前层级触发，不对子集继承），参数与before(options)一致
 
 

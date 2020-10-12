@@ -13,7 +13,7 @@ test('module', t => {
 
    const lloader = new Lloader(appPath, app);
 
-   lloader.addLoads({
+   lloader.add({
       "index.js": {
          "level": 1
       },
