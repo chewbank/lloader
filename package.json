@@ -1,11 +1,11 @@
 {
-  "name": "lloader",
+  "name": "@chewbank/lloader",
   "version": "5.0.0",
   "description": "node.js模块分级、递归装载器",
   "main": "lib/index.js",
   "dependencies": {},
   "devDependencies": {
-    "typea": "^5.0.4"
+    "@chewbank/typea": "^5.2.0"
   },
   "scripts": {
     "test": "jtf"
